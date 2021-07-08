@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       姓： <input type="text" v-model = firstname></input>
+       <br>
+       名： <input type="text" v-model = lastname></input>
+       <br>
+       <span>全名：{{fullName}}</span>
+       <br>
+       全名： <input type="text" v-model =fullName></input>
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data: {
+            firstname: '张',
+            lastname: '三'
+        },
+        computed:{ //计算属性 类似于defineProperty,增加了一个属性，需要自定义setter和getter
+            /*
+            fullName(){ //初次渲染时候调用，当依赖的属性发生变化时会调用，如果依赖的属性没有发生改变，则不调用
+                return this.firstname + '-' + this.lastname
+            } //该函数只是getter函数
+             */
+            fullName:{
+                set(value){
+                    const arr = value.split('-')
+                    this.firstname = arr[0]
+                    this.lastname = arr[1]
+                },
+                get(){
+                    return this.firstname + '-' + this.lastname
+                }
+            }
+        }
+    })
+    </script>
+</body>
+</html>

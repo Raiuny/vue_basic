@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    let person = {
+        firstname: '张',
+        lastname: '三',
+        gender: '男'
+    }
+    Object.defineProperty(person, 'fullName',{ // 该属性不会更改自身，通过计算动态控制属性，追加的属性来自于其他的计算
+        set(_fullName){
+          const arr = _fullName.split('-')
+          this.firstname = arr[0]
+          this.lastname = arr[1]
+        },
+        get(){
+            return this.firstname + '-' + this.lastname
+        }
+    })
+    </script>
+</body>
+</html>
