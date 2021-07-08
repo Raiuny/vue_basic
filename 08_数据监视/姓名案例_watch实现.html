@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       姓： <input type="text" v-model = firstname></input>
+       <br>
+       名： <input type="text" v-model = lastname></input>
+       <br>
+       <span>全名：{{fullName}}</span>
+    </div>
+    <script type="text/javascript">
+     const vm = new Vue({
+        el: '#root',
+        data: {
+            firstname: '张',
+            lastname: '三',
+            fullName: ''
+        },
+
+        //computed 不能开异步任务，但watch可以开启异步任务，例如监听函数中添加一个定时器函数，过一段时间后返回
+        //所有不是Vue管理的函数都写成箭头函数，因为箭头函数没有this，例如setTimeout 和ajax的回调
+        watch:{  //也可以用vm.$watch('firstname',{...})
+            /* 函数写法 精简写法
+            firstname(newValue){
+                //data中的firstname被改变的时候调用
+                this.fullName = newValue + '-' + this.lastname
+            },
+            lastname(newValue){
+                this.fullName = this.firstname + '-' + newValue
+            }*/
+            //监测数据对象的完整写法
+            firstname:{
+                immediate:true, //如果immediate为true，则初始化时候也会调用一次
+                handler(newValue){
+                    this.fullName = newValue + '-' + this.lastname
+                }
+            },
+            lastname(newValue){
+                this.fullName = this.firstname + '-' + newValue
+            }
+        }
+    })
+    </script>
+</body>
+</html>

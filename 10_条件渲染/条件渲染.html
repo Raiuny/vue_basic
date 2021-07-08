@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2> 今天天气真{{isHot ? '炎热':'凉快'}}</h2>
+        <button @click = "changeweather">切换天气</button>
+    <div id="hot" v-show="isHot">
+        <img src="../img/hot.jpeg" width="50%">
+        <br>
+        <span><h2>建议：心静自然凉</h2></span>
+    </div>
+    <br>
+    <!-- v-if连节点都没有，后续要v-else或者v-else-if -->
+    <!-- 条件渲染:
+        v-if: v-else-if v-else等
+        适用于切换频率低的场景
+        v-show: 
+        适用于切换频率高的场景
+        不展示的DOM节点没有被删除，仅仅是使用样式被隐藏了
+    -->
+    <div id="cold" v-show="!isHot">
+        <img src="../img/cold.jpeg" width="50%">
+        <br>
+        <span><h2>建议：穿秋裤</h2></span>
+    </div>
+    </div>
+    <!-- 只有天气炎热，才会展示下面的div -->
+    <script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data:{
+            isHot:false
+        },
+        methods: {
+            changeweather: function(){
+                this.isHot = ! this.isHot;
+            }
+        }
+    })
+    </script>
+</body>
+</html>
