@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>hello,{{msg}}</h2>
+    </div>
+
+
+    <script type="text/javascript">
+    // const vm = new Vue({
+    //     data: {
+    //         msg: '华中科技大学'
+    //     }
+    // })
+    // vm.$mount('#root')
+    // console.log(vm)
+    // setTimeout(() => {
+    //     vm.msg = 'hust'
+    // }, 1000)
+    new Vue({ //组件中用的多
+        el:'#root',
+        data:function(){  //data 不要写成箭头函数，要写成普通函数，否则this的指向就是window而不是vue的实例w
+            return {
+                msg:'HUST',
+                address:'华中科技大学'
+            }
+        }
+    })
+    </script>
+</body>
+</html>
