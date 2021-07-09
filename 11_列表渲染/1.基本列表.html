@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">{{index}}#{{p.name}}--{{p.sex}}--{{p.age}}岁</li>
+        </ul>
+        <ul>
+            <li v-for="(value,key) in car"> 
+                <!-- 类似于遍历字典 -->
+                {{value}}
+            </li>
+        </ul>
+        <h2>遍历字符串</h2>
+        <ul>
+            <li v-for="(data, index) in str">
+                {{data}}----{{index}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data:{
+            persons:[
+                {id:'001',name:'牛哇',age:18,sex:'男'},
+                {id:'002',name:'强哇',age:21,sex:'男'},
+                {id:'003',name:'嘿呀',age:12,sex:'女'},
+                {id:'004',name:'艾玛',age:23,sex:'女'},
+            ],
+            car:{
+                name:'奔驰c63',
+                price:'60w',
+                color:'灰色'
+            },
+            str:"中华人民共和国"
+
+        }
+    })
+    </script>
+</body>
+</html>

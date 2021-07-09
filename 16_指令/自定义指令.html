@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        需求：
+        自定义两个指令，功能类似于v-text,但转换为全大写，v-upper-text 和全部转换为小写的v-lower-text
+     -->
+    <div id="root">
+        <h2 v-upper-text="name">学校名称</h2>
+        <h2 v-lower-text="name"></h2>
+    </div>
+
+    <script type="text/javascript">
+    Vue.config.productionTip = false
+    //定义一个全局指令
+    Vue.directive('upper-text',function(el, binding){
+        el.innerText = el.innerText+': '+binding.value.toUpperCase()
+    })
+    new Vue({
+        el: '#root',
+        data: {
+            name:'Baidu-HUST'
+        },
+        directives: { //局部指令
+            'lower-text'(el, binding){
+                el.innerText = binding.value.toLowerCase()
+            }
+        }
+    })
+    </script>
+</body>
+</html>

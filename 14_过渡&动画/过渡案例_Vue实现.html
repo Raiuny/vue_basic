@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        .picture{
+            width:30%;
+        }
+        .tsf-leave, .tsf-enter-to{
+            /* 从什么状态开始消失（起点） */
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        .tsf-leave-to, .tsf-enter{ 
+            /* 终点 */
+            opacity: 0;
+            transform: scale(0.2) rotate(180deg);
+        }
+        .tsf-leave-active, .tsf-enter-active{
+            transition:1s all linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <button @click='transform'>切换</button>
+        <br/>
+        <transition name="tsf">
+            <img v-show = "isShow" src="../img/cold.jpeg" class="picture">
+        </transition>
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data: {
+            isShow: true
+        },
+        methods: { 
+            transform(){
+                this.isShow = !this.isShow;
+            }
+        },
+    })
+    </script>
+</body>
+</html>

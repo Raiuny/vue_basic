@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引出生命周期</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<style> 
+
+</style>
+<body>
+    <div id="root">
+        <h2 :style = "{opacity:opc}">生命周期</h2>
+        <button @click = 'death'>death</button>
+    </div>
+    <script type="text/javascript">
+   const vm =  new Vue({
+        el: '#root',
+        data: {
+            opc:1,
+            timer:{}
+        },
+        methods: {
+            death(){
+                this.$destroy()
+                console.log(this)
+            }
+        },
+        //Vue实例挂载完毕
+        mounted(){
+           this.timer = setInterval(()=>{
+                this.opc -= 0.03
+                if(this.opc <= 0) this.opc = 1
+                console.log("定时器回调正在进行")
+            },40)
+        },
+        //vm将要销毁
+        beforeDestroy(){
+            clearInterval(this.timer)
+        }
+    })
+    </script>
+</body>
+</html>

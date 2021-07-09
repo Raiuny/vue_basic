@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>显示格式化后的时间</h2>
+        <h3>{{time | dateFormater}}</h3>
+        <h3>{{time | dateFormater('YYYY-MM-DD')}}</h3>
+    </div>
+    <div id="root2">
+        <h2>显示格式化后的时间</h2>
+        <h3>{{time | dateFormater}}</h3>
+    </div>
+    <script type="text/javascript">
+    //全局注册的过滤器
+    Vue.filter('dateFormater',function(value,str='YYYY-MM-DD dd hh:mm:ss a'){
+        return moment(value).format(str)
+    })
+    new Vue({
+        el: '#root',
+        data:{
+        time:Date.now()
+        },
+        // methods:{
+        //     fmtDate(){
+        //         return moment(this.time).format('YYYY-MM-DD dd hh:mm:ss a')
+        //     }
+        // }
+    })
+    new Vue({
+        el: '#root2',
+        data:{
+        time:Date.now()
+        },
+    })
+    </script>
+</body>
+</html>

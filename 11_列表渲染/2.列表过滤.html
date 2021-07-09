@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <br/>
+        <input type="text" v-model="keyword" placeholder="请输入姓名"/>
+        <ul>
+            <li v-for="(p,index) in filtPersons" :key="p.id">
+               {{p.name}}--{{p.sex}}--{{p.age}}岁</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el: '#root',
+        data:{
+            keyword:'',
+            persons:[
+                {id:'001',name:'马冬梅',age:18,sex:'女'},
+                {id:'002',name:'周冬雨',age:21,sex:'女'},
+                {id:'003',name:'周杰伦',age:27,sex:'男'},
+                {id:'004',name:'温兆伦',age:23,sex:'男'},
+            ]
+        },
+        // 使用computed过滤，优势：不影响原数据
+        computed:{
+            filtPersons(){
+               // if(value === NULL){ }
+               const value = this.keyword
+               return this.persons.filter(p => p.name.indexOf(value)!=-1)
+            }
+        }
+        //在watch中修改原数据会造成数据的丢失
+        // watch: {
+        //     keyword(value){
+        //        const arr = this.persons.filter(p => p.name.indexOf(value)!=-1)
+        //        console.log(arr)
+        //     }
+        // }
+    })
+    </script>
+</body>
+</html>

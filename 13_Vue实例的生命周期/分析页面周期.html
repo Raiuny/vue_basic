@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2 id = 'h2'>当前页面求和为：{{sum}}</h2>
+        <button @click="add" id="btn">点我+1</button>
+        <button @click="death">销毁</button>
+    </div>
+    <script type="text/javascript">
+    const vm = Vue.config.productionTip = false
+    new Vue({
+        el: '#root',
+        data: {
+            sum:0
+        },
+        methods:{
+            death(){
+                this.$destroy()
+            },
+            add(){
+                this.sum +=1
+                console.log('调用add函数---')
+            }
+        },
+        beforeCreate() {
+            console.log('beforeCreated---------------') //初始化之前，无数据代理_data，以及mathods
+        },
+        created() { //初始化刚刚结束
+            console.log('created--------------------')
+        },
+        beforeMount(){
+            console.log('beforeMount--------------------')
+            // const btn = document.getElementById('btn')
+            // btn.innerText = 'haha'
+            const h = document.getElementById('h2')
+            console.log(h)
+            // debugger;
+        },
+        mounted() { //挂载完毕
+            console.log('mounted---------------')
+            // const h2 = document.getElementById('h2')
+            // const btn = document.getElementById('btn')
+            // console.log(h2)
+            // console.log(btn)
+        },
+        beforeUpdate() {
+            console.log('beforeupdate---------------')
+            // console.log(this.sum)
+            // debugger;
+        },
+        updated() {
+            console.log('updated---------------')
+        },
+        beforeDestroy() { //销毁前，methods虽然可以调用，但是已经起不到作用了，相当于断开了vm与页面的连接
+            console.log('beforedestroy---------------')
+            console.log(this.sum)
+        },
+    })
+    </script>
+</body>
+</html>
