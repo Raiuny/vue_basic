@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="./hust.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>name</h2>
+        <h2>{{$now}}</h2>
+        <h2>{{$random(50,100)}}</h2>
+    </div>
+    <script type="text/javascript">
+    Vue.config.productionTip = false
+    /*
+    Vue.prototype.now = moment(new Date()).format('YYYY-MM-DD dd HH:mm:ss a') //.toTimeString()
+    Vue.showInfo = function(){
+        console.log('我是一个数据')
+    }
+    Vue.directive('upper-text', function(el,binding){
+        el.innerText = binding.value.toUpperCase()
+    }) */
+
+    /*
+    插件：包含install的对象
+    */
+   //Vue使用hust插件时候会调用hust的install的方法
+   Vue.use(hust) //使用插件hust
+
+   console.log(Vue.projectName)
+   console.log(Vue.getVersion)
+   Vue.showInfo()
+    const vm = new Vue({
+        el: '#root',
+        data:{
+            name:'Hust'
+        }   
+    })
+    </script>
+</body>
+</html>
